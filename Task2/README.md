@@ -11,7 +11,6 @@ Three main chosen metrics are **Cosine Distance**, **Structural similarity index
 
 
 # Dicussion
-Using KNN with the metrics, we got a visually good results.
 ![Cosine Distance results seed 34](experiment/images/query_results_cosine_distance_seed35.png)
 ![Cosine Similarity results seed 35](experiment/images/query_results_cosine_similarity_seed36.png)
 Overall Cosine Similarity (and Cosine Distance) results in better image similarity. This may be due to the properties of the metric, which focuses on the orientation or direction of the two computed vector. Therefore, Cosine Distance can compare the patterns of the two images better. In the other hand, querying using SSIM score sometimes returns not visually similar such as [SSIM results seed 36](experiment/images/query_results_ssim_seed36.png)
@@ -25,7 +24,7 @@ pip install -r requirements.txt
 ```
 3. Run the main script (will use GPU is possible)
 ```
-python main.py --data_path D:/.../opendata --output_path ./output --size 100 --save_figure True --figure_name './experiment/images/resnet50_query_results' --seed 35 --metric cosine
+python main.py --data_path .../opendata --output_path ./output --size 100 --save_figure True --figure_name './experiment/images/resnet50_query_results' --seed 35 --metric cosine_similarity
 ```
 
 --data_path D:/.../opendata: Path storing the NGA repo folder

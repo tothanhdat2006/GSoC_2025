@@ -85,12 +85,22 @@ pip install -r requirements.txt
 ```
 3. Run the main script
 ```
-python main.py --data_path "./data" --pretrained "./weights/wikiart_resnet50_style.pt"
+python main.py --data_path .../ArtGAN/wikiart --model_weights ./weights/wikiart_style_ResNet_epoch4.pt --model_name Resnet --task style --evaluate 0 --size 5 --outliers 5
 ```
 
---data_path "./data": Path storing the wikiart folder
+--data_path .../ArtGAN/wikiart: Path storing the wikiart folder
 
---pretrained "./weights/wikiart_resnet50_style.pt": Path storing model weights for a pretrained resnet50 on wikiart dataset
+--model_weights ./weights/wikiart_style_ResNet_epoch4.pt: Path storing model weights for a pretrained model on wikiart dataset
+
+--model_name Resnet: name of the chosen model (Resnet or ViT)
+
+--task style: task list ['artist', 'genre', 'style', 'general']
+
+--evaluate 0: enables re-evaluate to reproduce the results (0: no, 1: yes)
+
+--size 5: number of random images to predict and display results
+
+--outliers 5: number of outliers to be displayed
 
 ## Model weights
 | Model | Task | Link |
