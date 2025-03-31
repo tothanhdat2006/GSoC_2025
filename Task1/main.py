@@ -14,11 +14,13 @@ def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--data_path', type=str, default='./data', help='Directory of the downloaded data')
     parser.add_argument('--model_weights', type=str, default='./weights', help='Directory of the pretrained model weights')
-    parser.add_argument('--model_name', type=str, default='resnet50', help='Name of the model to use (ResNet, ViT)')
+    parser.add_argument('--model_name', type=str, default='resnet50', help='Name of the model to use (Resnet, ViT)')
     parser.add_argument('--task', type=str, default='artist', help='Task to perform (artist, style, genre, or general)')
-    parser.add_argument('--evaluate', type=bool, default=0, help='Turn on evaluation (if needed)')
+    parser.add_argument('--evaluate', type=int, default=0, help='Turn on evaluation (if needed)')
     parser.add_argument('--size', type=int, default=5, help='Number of images to classify and display')
     parser.add_argument('--outliers', type=int, default=5, help='Number of outliers to display')
+    parser.add_argument('--threshold', type=float, default=0.25, help='Threshold for outlier detection')
+    parser.add_argument('--seed', type=int, default=86, help='Random seed for reproducibility')
     args = parser.parse_args()
     return args
 

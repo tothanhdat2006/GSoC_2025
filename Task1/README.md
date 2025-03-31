@@ -5,14 +5,16 @@ The dataset consists of 9 csv files and folders of images. There are 3 main 'sma
 - `(small task)_val.csv`: a csv file with 2 columns `filename` and `label` for validation
 There are total 81,444 images (57025 images for training and 24421 images for validation). The images are in different sizes, with the shortest side and longest side are 50 and 15530 pixels, respectively.
 
+
 # Metrics
 The specific task is a multiclass classification. And the general task can also be interpreted as multiclass classification, because the model can be designed to output 3 possibilities corresponding to artist, genre and style task. Therefore, simple metrics such as Accuracy, Recall and F1 score are good enough. The main metric here is F1 score because of its harmonic mean of precision and recall, represent the model's performance better. 
+
 
 # Experiment
 ## Specific
 Initally, Resnet50 was chosen to test due to its lightweight and efficiency. After that, a larger and trending model like ViT is tested to compare with Resnet50 and evaluate the performance of non-traditional CNN. It became apparent that a traditional CNN model performed better than CNN-Transformer in most of the 'small tasks' (+8.11% F1 score in `genre` task and +26.83% F1 score in `style` task). However ViT also showed the potential to achieve high F1 score on `artist` task (+14.85% F1 score in `artist` task).
 
-Table 1. Macro average Precision, Recall and F1 score (%) of Resnet50 and ViT on 3 different 'mini tasks'.
+Table. Macro average Precision, Recall and F1 score (%) of Resnet50 and ViT on 3 different 'mini tasks'.
 | **Architecture (Task)** | **Precision** | **Recall** | **F1** | 
 | ----------------   | :-------: | :----:  | :--: |
 | Resnet50 (Artist)  | 65.62     | 65.41   | 64.45 | 
@@ -26,7 +28,15 @@ Table 1. Macro average Precision, Recall and F1 score (%) of Resnet50 and ViT on
 
 
 ## General
-The model used in this case is Resnet50+LSTM. This simple combination achieves 65.98% F1 score in validation dataset.
+The model used in this case is Resnet50+LSTM. This simple combination achieves 67.96% Overall F1 score on validation dataset.
+Table. Overall Precision, Recall and F1 score (%) of Resnet50+LSTM on general task.
+| **Architecture** | **Precision**  | **Recall** | **F1** | 
+| ---------------- | :-------:      | :----:     | :--:   | 
+| Resnet50+LSTM    | 67.96          | 67.96      | 67.96  | 
+
+## Outlier
+Outlier is the images with confidence below some threshold, which default to be 0.25.  
+![Style Outliers](experiment/images/style_outliers.png)
 
 # Configuration
 ## Specific
@@ -48,14 +58,17 @@ Table. configuration for ViT on specific tasks
 | Genre | 3 | 1e-4 | AdamW (weight_decay=1e-5) | ReduceLROnPlateau |
 | Style | 4 | 1e-3 | AdamW (weight_decay=0.00025) | StepLR (step_size=1, gamma=0.66) |
 
+
 ## General
 Table. configuration for Resnet50+LSTM on general tasks
 | Task | n_epochs | lr | optimizer | scheduler | 
 | :-----: | :--------: | :--: | --------- | --------- |
 | General | 4 | 5e-4 | AdamW (weight_decay=000025) | StepLR (step_size=1, gamma=0.66) |
 
+
 # Dicussion
 Due to limited time, I can only concluded that the Resnet50 can performs well on the task, with the evaluation metrics are precision, recall and f1 score. For further improvements on the task, I recommend finetuning the hyperparameters of the models such as finetune the learning rate, and experimenting other models such as EfficientNet and other variants of Resnet such as Wide Resnet.
+
 
 # How to reproduce the results
 ## Kaggle
@@ -90,6 +103,7 @@ python main.py --data_path "./data" --pretrained "./weights/wikiart_resnet50_sty
 | ViT | Style | [Link](https://www.kaggle.com/models/thnhtt/wikiart-model-weights)  |
 | Resnet50+LSTM | General | [Link](https://www.kaggle.com/models/thnhtt/wikiart-model-weights) |
 
+
 # Folder structure
 ```
 |- configs: contains data, model configs
@@ -103,6 +117,7 @@ python main.py --data_path "./data" --pretrained "./weights/wikiart_resnet50_sty
 |- wikiart_general.ipynb: notebook version of general task
 |- wikiart_specific.ipynb: notebook version of specific task
 ```
+
 
 # Citation
 ```
