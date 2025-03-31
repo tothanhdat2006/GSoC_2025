@@ -22,7 +22,7 @@ Overall Cosine Similarity (and Cosine Distance) results in better image similari
 ```
 pip install -r requirements.txt
 ```
-3. Run the main script (will use GPU is possible)
+3. Run the main script (will use GPU if possible)
 ```
 python main.py --data_path .../opendata --output_path ./output --size 100 --save_figure True --figure_name './experiment/images/resnet50_query_results' --seed 35 --metric cosine_similarity
 ```
