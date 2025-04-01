@@ -67,7 +67,7 @@ Table. configuration for Resnet50+LSTM on general tasks
 
 
 # Dicussion
-Due to limited time, I can only concluded that the Resnet50 can performs well on the task, with the evaluation metrics are precision, recall and f1 score. For further improvements on the task, I recommend finetuning the hyperparameters of the models such as finetune the learning rate, and experimenting other models such as EfficientNet and other variants of Resnet such as Wide Resnet.
+Due to limited time, I can only concluded that the Resnet50 performs well on the task, with the evaluation metrics are precision, recall and f1 score. For further improvements on the task, I recommend finetuning the hyperparameters of the models such as finetune the learning rate, and experimenting other models such as EfficientNet and other variants of Resnet such as Wide Resnet.
 
 
 # How to reproduce the results
@@ -75,7 +75,7 @@ Due to limited time, I can only concluded that the Resnet50 can performs well on
 1. Clone this repository.
 2. Add the dataset to kaggle input.
 3. Import the `wikiart_specific.ipynb` or `wikiart_general.ipynb` notebook in the `File` menu. In the `Settings` -> `Accelerator`, choose GPU P100 and run the notebook from top to bottom.
-4. (Optional) If you want to use ViT for Specific task, you can uncomment the last GradCam part to see the attention map.
+4. (Optional) If you want to use ViT for Specific task, you can uncomment the GradCam part to see the attention map.
 
 ## Personal computer (GPU required)
 1. Clone this repository.
@@ -85,22 +85,12 @@ pip install -r requirements.txt
 ```
 3. Run the main script
 ```
-python main.py --data_path .../ArtGAN/wikiart --model_weights ./weights/wikiart_style_ResNet_epoch4.pt --model_name Resnet --task style --evaluate 0 --size 5 --outliers 5
+python main.py --data_path "./data" --pretrained "./weights/wikiart_resnet50_style.pt"
 ```
 
---data_path .../ArtGAN/wikiart: Path storing the wikiart folder
+--data_path "./data": Path storing the wikiart folder
 
---model_weights ./weights/wikiart_style_ResNet_epoch4.pt: Path storing model weights for a pretrained model on wikiart dataset
-
---model_name Resnet: name of the chosen model (Resnet or ViT)
-
---task style: task list ['artist', 'genre', 'style', 'general']
-
---evaluate 0: enables re-evaluate to reproduce the results (0: no, 1: yes)
-
---size 5: number of random images to predict and display results
-
---outliers 5: number of outliers to be displayed
+--pretrained "./weights/wikiart_resnet50_style.pt": Path storing model weights for a pretrained resnet50 on wikiart dataset
 
 ## Model weights
 | Model | Task | Link |
@@ -124,8 +114,8 @@ python main.py --data_path .../ArtGAN/wikiart --model_weights ./weights/wikiart_
 |- main.py: script to reproduce the result
 |- README.md: a report of models and findings for the Task 1
 |- requirements.txt: contains neccessary python library to execute the script 
-|- wikiart_general.ipynb: notebook version of general task
-|- wikiart_specific.ipynb: notebook version of specific task
+|- wikiart_general.ipynb: notebook version of general task (training script included)
+|- wikiart_specific.ipynb: notebook version of specific task (training script included)
 ```
 
 
