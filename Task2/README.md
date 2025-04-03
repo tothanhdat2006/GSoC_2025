@@ -13,6 +13,8 @@ Three main chosen metrics are **Cosine Distance**, **Structural similarity index
 # Dicussion
 ![Cosine Distance results seed 34](experiment/images/query_results_cosine_distance_seed35.png)
 ![Cosine Similarity results seed 35](experiment/images/query_results_cosine_similarity_seed36.png)
+The idea for finding similarity is to use a feature extractor (such as a pretrained CNN model) to extract important feature embeddings and then calculate the 'similarity metric' (such as cosine similarity) to determine how similar 2 images are. In this case, I use Resnet50 to extract and use metrics such as Cosine Similarity, SSIM and RMSE to compare the similarity between 2 images. The lower the cosine distance, the RMSE and the greater the cosine similarity, the SSIM are, the more similar 2 images are.
+
 Overall Cosine Similarity (and Cosine Distance) results in better image similarity. This may be due to the properties of the metric, which focuses on the orientation or direction of the two computed vector. Therefore, Cosine Distance can compare the patterns of the two images better. In the other hand, querying using SSIM score sometimes returns not visually similar such as [SSIM results seed 36](experiment/images/query_results_ssim_seed36.png)
 
 # How to reproduce the results
