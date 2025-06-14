@@ -18,7 +18,7 @@ My approach:
 - In specific task, I fine-tuned a ResNet50 and achieve 64.45%, 75.99% and 62.25% F1 score in classifying genre, artist and style respectively. I also fine-tuned a vit_base_patch16_224 and achieve 79.30% F1 score in classifying genre, which is 14.85% higher than ResNet50.
 - In general task, I develop a Convolutional Recurrent Neural Network that combines ResNet50 with LSTM to tackle the correlation between 3 classes. As a result, I achieve 67.96% F1 score in this task with just 4 epochs.
 - The outliers are detected by determining paintings with low confidence score predicted by the models. The results are shown in the below image
-![Style Outliers](experiment/images/style_outliers.png)
+![Style Outliers](Task1/experiment/images/style_outliers.png)
 
 ## Task 2
 Problem: Build a framework to find similarity in paintings in National Gallery Of Art dataset
