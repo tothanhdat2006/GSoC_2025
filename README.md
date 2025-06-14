@@ -2,9 +2,11 @@
 ```
 |- Task 1
     | ...
+    |- main.py
     |- README.md
 |- Task 2
-    | ... 
+    | ...
+    |- main.py
     |- README.md
 |- README.md
 ```
